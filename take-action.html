@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Take Action · Hanning for Wagoner County Commissioner, District 1</title>
+<meta name="description" content="Volunteer, request a yard sign, or donate. Help re-elect James Hanning on Tuesday, June 16, 2026.">
+<meta name="theme-color" content="#C1272D">
+<link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-logo" href="/" aria-label="Hanning for Wagoner County Commissioner, District 1">
+      <img src="/assets/img/logo.png" alt="HANNING · Wagoner County · District 1">
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="/">Home</a>
+      <a href="/about.html">About James</a>
+      <a href="/priorities.html">Priorities</a>
+      <a href="/take-action.html">Take Action</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://donate.stripe.com/aFa8wPct15Y5grP53143S00" rel="noopener">Donate</a>
+      <button class="nav-toggle" aria-controls="nav-links" aria-expanded="false" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="container">
+    <div style="max-width: 820px;">
+      <p class="eyebrow">Take action</p>
+      <h1>Three ways to help re-elect James.</h1>
+      <p class="lead">Every hour, every yard, every dollar compounds between now and primary day. Pick the one that fits your life — we'll make it count.</p>
+    </div>
+  </div>
+</header>
+
+<!-- THREE PATHS CARDS -->
+<section class="section">
+  <div class="container">
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Volunteer</div>
+        <p class="pillar-body">Phone bank, walk the neighborhood, help at an event, or something you're good at we haven't thought of. Tell us how you'd like to help.</p>
+        <p style="margin-top: var(--s3);"><a href="#volunteer" class="btn btn-navy">Volunteer →</a></p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Yard Sign</div>
+        <p class="pillar-body">A HANNING sign in your yard is worth a dozen boosted Facebook posts. Request one and we'll bring it by.</p>
+        <p style="margin-top: var(--s3);"><a href="#yard-sign" class="btn btn-navy">Request →</a></p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Donate</div>
+        <p class="pillar-body">Every dollar goes to reach more District 1 voters with the record. Secure payment through Stripe.</p>
+        <p style="margin-top: var(--s3);"><a href="https://donate.stripe.com/aFa8wPct15Y5grP53143S00" class="btn btn-primary" rel="noopener">Donate →</a></p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">Just Vote</div>
+        <p class="pillar-body">Primary is Tuesday, June 16, 2026. Early voting June 11–13. Voter registration deadline May 22. Share those dates.</p>
+        <p style="margin-top: var(--s3);"><a href="https://oklahoma.gov/elections.html" class="btn btn-navy" rel="noopener">Check voter status →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER FORM -->
+<section class="section bg-cream-deep" id="volunteer">
+  <div class="container">
+    <div class="container-narrow" style="padding: 0;">
+      <div class="record-head">
+        <p class="eyebrow">Volunteer</p>
+        <h2>Tell us how you'd like to help.</h2>
+        <p class="lead" style="color: var(--muted);">Name, contact, and what you're up for. We'll reach out within 48 hours.</p>
+      </div>
+
+      <form class="form-card"
+            data-endpoint="/.netlify/functions/submit-volunteer"
+            data-success="Thanks — James will be in touch within 48 hours. Keep an eye on your email and phone.">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="v-first">First name<span class="req">*</span></label>
+            <input class="form-control" id="v-first" type="text" name="first_name" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="v-last">Last name<span class="req">*</span></label>
+            <input class="form-control" id="v-last" type="text" name="last_name" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="v-email">Email<span class="req">*</span></label>
+            <input class="form-control" id="v-email" type="email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="v-phone">Phone</label>
+            <input class="form-control" id="v-phone" type="tel" name="phone" autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="v-zip">ZIP code <span style="font-weight: 500; color: var(--muted);">(so we can match you to your precinct)</span></label>
+          <input class="form-control" id="v-zip" type="text" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code">
+        </div>
+        <div class="form-group">
+          <label>How would you like to help?</label>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="interests" value="yard_sign"><span>Put up a yard sign</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="phone_bank"><span>Phone bank</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="canvass"><span>Knock doors / canvass</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="event"><span>Help at an event</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="donate"><span>Make a donation</span></label>
+            <label class="check"><input type="checkbox" name="interests" value="endorse"><span>Endorse publicly</span></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="v-note">Anything else we should know?</label>
+          <textarea class="form-control" id="v-note" name="note" rows="3" placeholder="Best way to reach you, a skill we should know about, a neighbor we should call…"></textarea>
+        </div>
+        <!-- Honeypot -->
+        <div class="hp" aria-hidden="true">
+          <label for="v-hp">Website</label>
+          <input type="text" id="v-hp" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Count me in</button>
+        <p class="form-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- YARD SIGN FORM -->
+<section class="section" id="yard-sign">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <p class="eyebrow">Yard sign</p>
+        <h2>Put a HANNING sign in front of your house.</h2>
+        <p>Tell us where to drop it off. A volunteer will bring it by — no cost, no commitment.</p>
+        <p>Signs typically arrive within 3 business days of a request.</p>
+        <img src="/assets/img/yard-sign.jpg" alt="A Re-elect HANNING yard sign in a Broken Arrow yard" style="border-radius: var(--radius); box-shadow: var(--shadow-md); max-width: 360px;">
+      </div>
+      <form class="form-card"
+            data-endpoint="/.netlify/functions/submit-yard-sign"
+            data-success="Got it — a volunteer will be by within 3 business days with your sign.">
+        <div class="form-group">
+          <label for="y-name">Full name<span class="req">*</span></label>
+          <input class="form-control" id="y-name" type="text" name="name" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="y-phone">Phone<span class="req">*</span></label>
+          <input class="form-control" id="y-phone" type="tel" name="phone" required autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="y-email">Email</label>
+          <input class="form-control" id="y-email" type="email" name="email" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="y-address">Street address<span class="req">*</span></label>
+          <input class="form-control" id="y-address" type="text" name="address" required autocomplete="street-address">
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="y-city">City<span class="req">*</span></label>
+            <input class="form-control" id="y-city" type="text" name="city" required value="Broken Arrow" autocomplete="address-level2">
+          </div>
+          <div class="form-group">
+            <label for="y-zip">ZIP<span class="req">*</span></label>
+            <input class="form-control" id="y-zip" type="text" name="zip" required inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="y-note">Delivery notes</label>
+          <textarea class="form-control" id="y-note" name="note" rows="2" placeholder="Gate code, where to leave it, best time…"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="y-hp">Website</label>
+          <input type="text" id="y-hp" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Request my sign</button>
+        <p class="form-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE BAND -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <p class="eyebrow" style="color: var(--gold);">Donate</p>
+      <h2>Five dollars. Twenty-five. A hundred.</h2>
+      <p class="lead">Every contribution from the campaign committee's Stripe goes to reaching more District 1 voters with the record. Secure, encrypted, and reported to the Oklahoma Ethics Commission.</p>
+      <div class="btn-row">
+        <a class="btn btn-gold btn-lg" href="https://donate.stripe.com/aFa8wPct15Y5grP53143S00" rel="noopener">Donate securely</a>
+      </div>
+      <p style="margin-top: var(--s4); font-size: 13px; color: rgba(250,246,238,0.65); max-width: 600px; margin-left: auto; margin-right: auto;">
+        Contributions are not tax-deductible. Paid for by James Hanning for Wagoner County Commissioner District 1.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPORTANT DATES -->
+<section class="section bg-cream-deep">
+  <div class="container">
+    <div class="record-head center">
+      <p class="eyebrow">Save the dates</p>
+      <h2>Four dates to mark on your calendar.</h2>
+    </div>
+    <div class="dates-bar">
+      <div class="date-slot">
+        <div class="date-value">May 22</div>
+        <div class="date-label">Voter registration deadline</div>
+      </div>
+      <div class="date-slot">
+        <div class="date-value">June 11–13</div>
+        <div class="date-label">Early voting</div>
+      </div>
+      <div class="date-slot is-primary">
+        <div class="date-value">June 16</div>
+        <div class="date-label">Republican primary</div>
+      </div>
+      <div class="date-slot">
+        <div class="date-value">Nov 3</div>
+        <div class="date-label">General election</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="/assets/img/logo.png" alt="HANNING · Wagoner County · District 1" class="footer-logo">
+        <p>Re-elect James Hanning.<br>Wagoner County Commissioner, District 1.</p>
+      </div>
+      <div>
+        <h5>The site</h5>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About James</a></li>
+          <li><a href="/priorities.html">Priorities</a></li>
+          <li><a href="/take-action.html">Take Action</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get involved</h5>
+        <ul>
+          <li><a href="/take-action.html#volunteer">Volunteer</a></li>
+          <li><a href="/take-action.html#yard-sign">Request a yard sign</a></li>
+          <li><a href="https://donate.stripe.com/aFa8wPct15Y5grP53143S00" rel="noopener">Donate</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>PO Box 141023<br>Broken Arrow, OK 74014</li>
+          <li><a href="mailto:info@jameshanningforwagonercocommissioner.com">info@jameshanningforwagonercocommissioner.com</a></li>
+          <li><a href="https://www.facebook.com/hanningforwagonerco1" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="disclaimer">©2026 James Hanning for Wagoner County Commissioner District 1. All rights reserved. Authorized and paid for by James Hanning for Wagoner County Commissioner District 1.</p>
+      <p>Site by <a href="https://lobbii.net" rel="noopener">Lobbii</a></p>
+    </div>
+  </div>
+</footer>
+
+<aside class="countdown" aria-label="Days until the Republican primary on June 16, 2026"></aside>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

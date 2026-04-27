@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team login · Hanning 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#C1272D">
+<link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/team/team.css">
+</head>
+<body class="team-shell">
+
+<main class="login-card-wrap">
+  <form class="login-card" id="login-form" autocomplete="off" novalidate>
+    <img src="/assets/img/logo.png" alt="HANNING · Wagoner County · District 1" class="login-logo">
+    <p class="eyebrow" style="margin-bottom: 8px;">Campaign team · Sign in</p>
+    <h1 style="font-size: 2rem; margin-bottom: 8px;">Welcome back.</h1>
+    <p style="color: var(--muted); font-size: 14px; margin-bottom: 24px;">
+      One shared password for the campaign team.
+    </p>
+
+    <div class="form-group" style="margin-bottom: 16px;">
+      <label for="pwd">Team password</label>
+      <input class="form-control" id="pwd" name="password" type="password" required autocomplete="current-password" autofocus>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Sign in</button>
+    <p class="form-status" role="status" style="margin-top: 16px;"></p>
+
+    <div style="margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); text-align: center;">
+      Lost your password? Ask Carter at <a href="mailto:hello@lobbii.net">hello@lobbii.net</a>.
+    </div>
+  </form>
+</main>
+
+<script>
+  (() => {
+    const form = document.getElementById('login-form');
+    const status = form.querySelector('.form-status');
+    const btn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const password = form.querySelector('#pwd').value;
+      btn.disabled = true; btn.textContent = 'Checking…';
+      status.className = 'form-status';
+      status.textContent = '';
+      try {
+        const res = await fetch('/.netlify/functions/team-login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password }),
+        });
+        if (res.ok) {
+          window.location.href = '/team/dashboard.html';
+          return;
+        }
+        if (res.status === 401) {
+          status.className = 'form-status is-error';
+          status.textContent = 'That password didn\'t work. Try again.';
+        } else {
+          status.className = 'form-status is-error';
+          status.textContent = 'Something went wrong. Try again in a moment.';
+        }
+      } catch (err) {
+        status.className = 'form-status is-error';
+        status.textContent = 'Network error. Try again.';
+      } finally {
+        btn.disabled = false; btn.textContent = 'Sign in';
+      }
+    });
+  })();
+</script>
+</body>
+</html>

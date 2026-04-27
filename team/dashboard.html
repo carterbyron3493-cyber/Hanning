@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Team Dashboard · Hanning 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#C1272D">
+<link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/team/team.css">
+</head>
+<body class="team-shell">
+
+<header class="team-bar">
+  <a class="team-bar-logo" href="/team/dashboard.html">
+    <img src="/assets/img/logo.png" alt="">
+    <div>
+      <div class="team-bar-eyebrow">CAMPAIGN TEAM</div>
+      <div class="team-bar-title">Dashboard</div>
+    </div>
+  </a>
+  <div class="team-bar-actions">
+    <span id="who-label" class="who-label" title="Click to set initials">Set your initials</span>
+    <button id="refresh-btn" class="btn btn-outline" title="Refresh data">↻ Refresh</button>
+    <button id="logout-btn" class="btn btn-ghost btn-dark">Sign out</button>
+  </div>
+</header>
+
+<!-- Top stats -->
+<section class="container" style="padding-top: 24px;">
+  <div class="stat-strip">
+    <div><span id="stat-vol-total">—</span><div class="stat-label">Total volunteers</div></div>
+    <div><span id="stat-vol-new">—</span><div class="stat-label">New (untouched)</div></div>
+    <div><span id="stat-yard-total">—</span><div class="stat-label">Yard signs total</div></div>
+    <div><span id="stat-yard-pending">—</span><div class="stat-label">Pending delivery</div></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tab-bar" role="tablist">
+    <button class="tab is-active" data-tab="volunteers" role="tab" aria-selected="true">Volunteers <span class="tab-count" id="tab-count-vol">0</span></button>
+    <button class="tab" data-tab="yard-signs" role="tab" aria-selected="false">Yard signs <span class="tab-count" id="tab-count-yard">0</span></button>
+  </div>
+
+  <!-- VOLUNTEERS TAB -->
+  <div id="tab-volunteers" class="tab-panel">
+    <div class="filter-row">
+      <input id="vol-search" class="form-control" type="search" placeholder="Search name, email, ZIP, note…">
+      <select id="vol-status" class="form-control">
+        <option value="">All statuses</option>
+        <option value="new">New</option>
+        <option value="contacted">Contacted</option>
+        <option value="assigned">Assigned</option>
+        <option value="onboarded">Onboarded</option>
+        <option value="done">Done</option>
+        <option value="bad">Bad data / spam</option>
+      </select>
+      <select id="vol-interest" class="form-control">
+        <option value="">All interests</option>
+        <option value="yard_sign">Yard sign</option>
+        <option value="phone_bank">Phone bank</option>
+        <option value="canvass">Canvass</option>
+        <option value="event">Event help</option>
+        <option value="donate">Donate</option>
+        <option value="endorse">Endorse</option>
+      </select>
+      <button id="vol-export" class="btn btn-outline">Export CSV</button>
+    </div>
+    <div id="vol-list" class="row-list" aria-live="polite"></div>
+  </div>
+
+  <!-- YARD SIGNS TAB -->
+  <div id="tab-yard-signs" class="tab-panel" hidden>
+    <div class="filter-row">
+      <input id="yard-search" class="form-control" type="search" placeholder="Search name, phone, address…">
+      <select id="yard-status" class="form-control">
+        <option value="">All statuses</option>
+        <option value="requested">Requested</option>
+        <option value="out_for_delivery">Out for delivery</option>
+        <option value="delivered">Delivered</option>
+        <option value="declined">Declined</option>
+        <option value="bad">Bad data / spam</option>
+      </select>
+      <button id="yard-export" class="btn btn-outline">Export CSV</button>
+    </div>
+    <div id="yard-list" class="row-list" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- Detail drawer -->
+<aside id="drawer" class="drawer" aria-hidden="true" tabindex="-1">
+  <div class="drawer-backdrop" data-close></div>
+  <div class="drawer-panel" role="dialog" aria-labelledby="drawer-title">
+    <header class="drawer-head">
+      <div>
+        <div class="eyebrow" id="drawer-eyebrow">—</div>
+        <h2 id="drawer-title" style="margin: 4px 0 0; font-size: 1.6rem;">—</h2>
+      </div>
+      <button class="drawer-close" data-close aria-label="Close">×</button>
+    </header>
+    <div class="drawer-body" id="drawer-body"></div>
+  </div>
+</aside>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="/team/team.js" defer></script>
+</body>
+</html>

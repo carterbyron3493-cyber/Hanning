@@ -47,6 +47,8 @@ hanning-site/
 | `RESEND_API_KEY` | API key from [resend.com](https://resend.com) → API Keys. Free tier: 100 emails/day, 3K/month. |
 | `NOTIFY_EMAIL` | Where new-signup alerts go. During build phase: `hello@lobbii.net`. Switch to `team@jameshanning…` once the campaign team is ready. |
 | `NOTIFY_FROM` | Optional. Sender display. Default: `Hanning Campaign <onboarding@resend.dev>`. After verifying the campaign domain in Resend, switch to e.g. `alerts@jameshanningforwagonercocommissioner.com`. |
+| `TEAM_PASSWORD` | Shared password for the `/team` dashboard. Pick something strong; rotate at end of campaign. |
+| `TEAM_SECRET` | Random ~32+ char string used to HMAC-sign team auth cookies. Generate once with `openssl rand -hex 32` and never share. |
 
 ---
 
@@ -97,9 +99,58 @@ create table if not exists hanning_yard_signs (
 
 create index if not exists hanning_yard_signs_created_idx on hanning_yard_signs (created_at desc);
 create index if not exists hanning_yard_signs_status_idx on hanning_yard_signs (status);
+
+-- Activity log (every team-dashboard status change)
+create table if not exists hanning_activity_log (
+  id uuid primary key default gen_random_uuid(),
+  table_name text not null,        -- 'hanning_volunteers' | 'hanning_yard_signs'
+  row_id uuid not null,
+  changes jsonb,
+  actor text,                       -- initials or name of team member
+  created_at timestamptz default now()
+);
+
+create index if not exists hanning_activity_log_row_idx on hanning_activity_log (table_name, row_id, created_at desc);
+
+-- Update existing yard signs schema to add team-tracking columns (idempotent)
+alter table hanning_yard_signs
+  add column if not exists assigned_to text,
+  add column if not exists last_updated_at timestamptz,
+  add column if not exists last_updated_by text;
 ```
 
-RLS can stay off since only the service role key writes, and the dashboard will read via the master dashboard pattern from the Lobbii stack.
+RLS can stay off — all reads and writes go through Netlify Functions using the service-role key, which bypasses RLS by design. The public site never receives a Supabase client.
+
+---
+
+## Team dashboard (`/team`)
+
+Password-gated CRM for the campaign team to triage volunteer signups and yard-sign requests.
+
+**Live URL:** `/team` on the deployed Hanning site.
+**Auth:** single shared password (HMAC-signed cookie, 7-day session).
+
+**Workflow stages:**
+- *Volunteers:* `new` → `contacted` → `assigned` → `onboarded` → `done` (or `bad`)
+- *Yard signs:* `requested` → `out_for_delivery` → `delivered` (or `declined` / `bad`)
+
+**Features:**
+- Live counts at the top (total, new untouched, yard signs pending delivery)
+- Tabs for Volunteers / Yard Signs with live counts
+- Filters: status, interest type, free-text search
+- Detail drawer per row — status, assigned-to, internal notes
+- Activity log (`hanning_activity_log` table) records every status change
+- CSV export per filtered view
+- Auto-refresh every 90 seconds
+- Mobile-first (volunteer coordinators in the field)
+- Tap-to-call phones, Maps deeplinks for delivery routing
+- Set-your-initials chip in the top right tags status changes with who-by
+
+**Functions backing it:**
+- `team-login.js` — POST password, returns signed cookie
+- `team-logout.js` — clears cookie
+- `team-data.js` — GET all volunteers + yard signs (auth-required)
+- `update-status.js` — PATCH a row + writes to activity log (auth-required)
 
 ---
 

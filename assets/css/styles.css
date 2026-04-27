@@ -712,6 +712,22 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   align-items: start;
 }
 
+/* Sidebar / aside imagery — uniform 4:3 thumbnails, no awkward gappy stacks */
+.aside-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+  margin: 0 0 var(--s3);
+  box-shadow: var(--shadow-sm);
+  background: var(--cream-deep);
+}
+.aside-img:first-child { box-shadow: var(--shadow-md); }
+.aside-img:last-child { margin-bottom: 0; }
+.aside-img.is-tall { aspect-ratio: 3 / 4; }      /* for hero-style portrait stack */
+.aside-img.is-wide { aspect-ratio: 16 / 10; }    /* wider thumbnails */
+
 /* -----  Footer  ----- */
 .footer {
   background: var(--ink);

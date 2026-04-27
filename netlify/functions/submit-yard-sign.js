@@ -1,6 +1,9 @@
 // POST /.netlify/functions/submit-yard-sign
 // Body: { name, phone, email?, address, city, zip, note?, website? (honeypot) }
-// Inserts into Supabase table `hanning_yard_signs`.
+// 1. Inserts into Supabase table `hanning_yard_signs`.
+// 2. Sends an email alert to NOTIFY_EMAIL via Resend.
+
+const { sendNotificationEmail, emailShell, row } = require('./_lib/notify');
 
 exports.handler = async (event) => {
   const HEADERS = {
@@ -43,6 +46,7 @@ exports.handler = async (event) => {
     created_at: new Date().toISOString(),
   };
 
+  // 1. Insert into Supabase
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/hanning_yard_signs`, {
       method: 'POST',
@@ -62,6 +66,41 @@ exports.handler = async (event) => {
   } catch (err) {
     console.error('Fetch to Supabase threw:', err);
     return { statusCode: 502, headers: HEADERS, body: JSON.stringify({ ok: false, error: 'Network error' }) };
+  }
+
+  // 2. Email alert
+  const fullAddress = `${record.address}, ${record.city} ${record.zip}`;
+  const mapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(fullAddress)}`;
+  try {
+    await sendNotificationEmail({
+      subject: `🪧 New yard sign request · ${record.name}`,
+      text: [
+        `New yard sign request — Hanning campaign`,
+        ``,
+        `Name:    ${record.name}`,
+        `Phone:   ${record.phone}`,
+        record.email ? `Email:   ${record.email}` : null,
+        `Address: ${fullAddress}`,
+        record.note ? `Note:    ${record.note}` : null,
+        ``,
+        `Time: ${record.created_at}`,
+        `Maps: ${mapsUrl}`,
+      ].filter(Boolean).join('\n'),
+      html: emailShell({
+        heading: 'New yard sign request',
+        subhead: record.name,
+        rows: [
+          row('Phone', record.phone),
+          row('Email', record.email),
+          row('Address', fullAddress),
+          row('Delivery note', record.note),
+          row('When', new Date(record.created_at).toLocaleString('en-US', { timeZone: 'America/Chicago' }) + ' CT'),
+        ].join('') + `<tr><td colspan="2" style="padding-top:16px;"><a href="${mapsUrl}" style="color:#C1272D;font-weight:600;">→ Open in Maps</a></td></tr>`,
+        footerNote: 'Mark delivered in the team dashboard once dropped off.',
+      }),
+    });
+  } catch (err) {
+    console.warn('Notification email failed (non-blocking):', err.message);
   }
 
   return { statusCode: 200, headers: HEADERS, body: JSON.stringify({ ok: true }) };

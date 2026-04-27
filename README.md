@@ -44,6 +44,9 @@ hanning-site/
 |---|---|
 | `SUPABASE_URL` | `https://nzqdpzymvthzzbyrrhew.supabase.co` (reuse existing Lobbii Supabase) |
 | `SUPABASE_SERVICE_KEY` | Service role key from Supabase → Settings → API |
+| `RESEND_API_KEY` | API key from [resend.com](https://resend.com) → API Keys. Free tier: 100 emails/day, 3K/month. |
+| `NOTIFY_EMAIL` | Where new-signup alerts go. During build phase: `hello@lobbii.net`. Switch to `team@jameshanning…` once the campaign team is ready. |
+| `NOTIFY_FROM` | Optional. Sender display. Default: `Hanning Campaign <onboarding@resend.dev>`. After verifying the campaign domain in Resend, switch to e.g. `alerts@jameshanningforwagonercocommissioner.com`. |
 
 ---
 
@@ -62,13 +65,18 @@ create table if not exists hanning_volunteers (
   zip text,
   interests text[] default array[]::text[],
   note text,
+  status text default 'new',          -- new | contacted | assigned | onboarded | done | bad
+  assigned_to text,                    -- name/initials of team coordinator
   source_ip text,
   user_agent text,
-  created_at timestamptz default now()
+  created_at timestamptz default now(),
+  last_updated_at timestamptz,
+  last_updated_by text
 );
 
 create index if not exists hanning_volunteers_email_idx on hanning_volunteers (email);
 create index if not exists hanning_volunteers_created_idx on hanning_volunteers (created_at desc);
+create index if not exists hanning_volunteers_status_idx on hanning_volunteers (status);
 
 -- Yard signs
 create table if not exists hanning_yard_signs (

@@ -711,6 +711,9 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   gap: var(--s7);
   align-items: start;
 }
+.two-col.is-flipped { grid-template-columns: 1fr 1.3fr; }
+/* Center-align the prose vertically with the photo when sections are alternating */
+.two-col.is-centered { align-items: center; }
 
 /* Sidebar / aside imagery — uniform 4:3 thumbnails, no awkward gappy stacks */
 .aside-img {
@@ -830,7 +833,10 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .dates-bar { grid-template-columns: repeat(2, 1fr); }
   .date-slot:nth-child(2) { border-right: 0; }
   .date-slot:nth-child(1), .date-slot:nth-child(2) { border-bottom: 1px solid var(--line); }
-  .two-col { grid-template-columns: 1fr; gap: var(--s5); }
+  .two-col, .two-col.is-flipped { grid-template-columns: 1fr; gap: var(--s5); }
+  /* On mobile, photos always lead the section regardless of HTML order \u2014
+     gives every section a consistent visual hook before the text. */
+  .two-col aside { order: -1; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 

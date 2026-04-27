@@ -715,21 +715,33 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 /* Center-align the prose vertically with the photo when sections are alternating */
 .two-col.is-centered { align-items: center; }
 
-/* Sidebar / aside imagery — uniform 4:3 thumbnails, no awkward gappy stacks */
-.aside-img {
+/* Sidebar / aside imagery — wrapper div approach for bulletproof aspect-ratio.
+   Browsers respect CSS aspect-ratio on a div, but with <img> they honor the
+   intrinsic ratio of the image file, which is why a portrait photo would
+   stretch the column tall. Wrap in a frame, image fills it. */
+.aside-frame {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
+  overflow: hidden;
   border-radius: var(--radius);
-  margin: 0 0 var(--s3);
   box-shadow: var(--shadow-sm);
   background: var(--cream-deep);
+  margin: 0 0 var(--s3);
 }
-.aside-img:first-child { box-shadow: var(--shadow-md); }
-.aside-img:last-child { margin-bottom: 0; }
-.aside-img.is-tall { aspect-ratio: 3 / 4; }      /* for hero-style portrait stack */
-.aside-img.is-wide { aspect-ratio: 16 / 10; }    /* wider thumbnails */
+.aside-frame:first-child { box-shadow: var(--shadow-md); }
+.aside-frame:last-child { margin-bottom: 0; }
+.aside-frame.is-tall { aspect-ratio: 3 / 4; }       /* portrait crop */
+.aside-frame.is-wide { aspect-ratio: 16 / 10; }     /* panoramic */
+.aside-frame.is-square { aspect-ratio: 1 / 1; }
+.aside-frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Backwards-compatible alias for any leftover .aside-img refs */
+.aside-img { width: 100%; height: auto; display: block; border-radius: var(--radius); margin: 0 0 var(--s3); box-shadow: var(--shadow-sm); }
 
 /* -----  Footer  ----- */
 .footer {

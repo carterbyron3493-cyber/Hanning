@@ -429,6 +429,123 @@ p { margin: 0 0 var(--s3); }
   line-height: 1.5;
 }
 
+/* -----  The Receipts (overwhelming-with-proof scroll)  ----- */
+.receipts {
+  background: var(--navy-dark);
+  color: var(--cream);
+  padding: var(--s8) 0;
+  position: relative;
+  overflow: hidden;
+}
+.receipts::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold) 50%, var(--red) 50%, var(--red) 100%);
+}
+.receipts h2 { color: var(--cream); }
+.receipts .eyebrow { color: var(--gold); }
+.receipts .record-lead { color: rgba(250,246,238,0.78); margin: 0; font-size: 1.1rem; }
+
+/* Marquee — auto-scrolling pill ticker */
+.marquee {
+  margin: var(--s7) -32px var(--s6);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+.marquee-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: marquee-scroll 70s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.receipt-pill {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 10px 18px;
+  background: rgba(250,246,238,0.06);
+  border: 1px solid rgba(232,176,75,0.18);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--cream);
+  letter-spacing: 0.01em;
+  flex: 0 0 auto;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Receipts grid (dense list of accomplishments) */
+.receipts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s5);
+  margin-top: var(--s4);
+}
+.receipts-col-head {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 var(--s3);
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid rgba(232,176,75,0.25);
+}
+.receipts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--s4);
+}
+.receipts-list li {
+  position: relative;
+  padding: 8px 0 8px 28px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(250,246,238,0.92);
+  border-bottom: 1px solid rgba(250,246,238,0.06);
+}
+.receipts-list li:last-child { border-bottom: 0; }
+.receipts-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(232,176,75,0.18);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.receipts-list strong { color: var(--gold); font-weight: 700; }
+.receipts-foot {
+  text-align: center;
+  margin: var(--s6) 0 0;
+  color: rgba(250,246,238,0.7);
+  font-size: 14px;
+}
+.receipts-foot a { color: var(--gold); font-weight: 600; }
+.receipts-foot a:hover { color: var(--cream); }
+
 /* -----  Pillars / priorities  ----- */
 .pillars-grid {
   display: grid;
@@ -844,6 +961,7 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-photo { aspect-ratio: 4 / 3; order: -1; max-width: 460px; margin: 0 auto; }
   .record-grid { grid-template-columns: repeat(2, 1fr); gap: var(--s6) var(--s5); }
+  .receipts-grid { grid-template-columns: 1fr 1fr; gap: var(--s5); }
   .pillars-grid { grid-template-columns: repeat(2, 1fr); }
   .priority-cards { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
@@ -867,6 +985,7 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .hero-ctas { flex-direction: column; align-items: stretch; }
   .hero-ctas .btn { width: 100%; }
   .record-grid { grid-template-columns: 1fr; gap: var(--s5); text-align: center; }
+  .receipts-grid { grid-template-columns: 1fr; gap: var(--s4); }
   .pillars-grid { grid-template-columns: 1fr; }
   .dates-bar { grid-template-columns: 1fr; }
   .date-slot { border-right: 0; border-bottom: 1px solid var(--line); }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <url>
+    <loc>https://www.jameshanningforwagonercocommissioner.com/</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.jameshanningforwagonercocommissioner.com/assets/img/hanning-portrait.jpg</image:loc>
+      <image:caption>Commissioner James Hanning, Wagoner County District 1</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.jameshanningforwagonercocommissioner.com/about.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.jameshanningforwagonercocommissioner.com/assets/img/paver-dist1.jpg</image:loc>
+      <image:caption>Commissioner Hanning at the controls of a CAT paver labeled Property of Dist 1, Wagoner Co.</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.jameshanningforwagonercocommissioner.com/priorities.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.jameshanningforwagonercocommissioner.com/assets/img/dump-truck-direction.jpg</image:loc>
+      <image:caption>Commissioner Hanning directing a Mack dump truck on a District 1 road project</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.jameshanningforwagonercocommissioner.com/take-action.html</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.jameshanningforwagonercocommissioner.com/assets/img/every-vote-counts.jpg</image:loc>
+      <image:caption>Commissioner Hanning at the EVERY VOTE COUNTS wall</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

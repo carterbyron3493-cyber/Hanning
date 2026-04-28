@@ -1,0 +1,15 @@
+{
+  "name": "Hanning for Wagoner County Commissioner, District 1",
+  "short_name": "Hanning 2026",
+  "description": "Re-elect Commissioner James Hanning. Vote Tuesday, June 16, 2026.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF6EE",
+  "theme_color": "#C1272D",
+  "orientation": "portrait",
+  "lang": "en-US",
+  "icons": [
+    { "src": "/assets/img/logo.png", "sizes": "240x119", "type": "image/png", "purpose": "any" }
+  ],
+  "categories": ["politics", "government", "news"]
+}

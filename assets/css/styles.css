@@ -5,12 +5,14 @@
    ========================================================================= */
 
 :root {
-  /* Core palette — pulled from the official yard sign / logo */
-  --red:        #C1272D;  /* HANNING red */
-  --red-dark:   #8B1A1A;  /* hover / deeper */
-  --navy:       #1F2C4A;  /* Wagoner County script */
+  /* Core palette — pulled from the new HANNING / Wagoner County logo + mailers.
+     Brighter, more American-flag red. Gold dropped from accents in favor of
+     cream/white/navy for a cleaner red-white-blue patriotic register. */
+  --red:        #DC2828;  /* HANNING red — brighter, mailer-matched */
+  --red-dark:   #B81E1E;  /* hover / deeper */
+  --navy:       #1F2C4A;  /* Wagoner County navy */
   --navy-dark:  #14203A;
-  --gold:       #E8B04B;  /* District 1 */
+  --gold:       #E8B04B;  /* kept defined for legacy use but minimized */
   --gold-dark:  #C9932E;
   --cream:      #FAF6EE;  /* primary background */
   --cream-deep: #F2EADB;  /* card / section alt */
@@ -140,6 +142,61 @@ p { margin: 0 0 var(--s3); }
 .btn-gold:hover { background: var(--gold-dark); color: var(--ink); }
 .btn-lg { padding: 20px 36px; font-size: 17px; }
 
+/* -----  Brand logo (HTML + CSS composition matching new logo) ----- */
+.brand {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1;
+  text-align: left;
+  padding: 4px 0;
+  color: inherit;
+}
+.brand-james {
+  display: block;
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: -3px;
+  margin-left: 3px;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+.brand-name {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 1.5px;
+  line-height: 0.9;
+}
+.brand-tagline {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--navy-dark);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.brand-district {
+  display: block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
+
+/* Larger footer variant */
+.brand--footer .brand-james    { font-size: 18px; }
+.brand--footer .brand-name     { font-size: 44px; letter-spacing: 2px; }
+.brand--footer .brand-tagline  { font-size: 12px; color: rgba(250,246,238,0.85); }
+.brand--footer .brand-district { font-size: 14px; color: var(--cream); }
+
 /* -----  Navigation  ----- */
 .nav {
   position: sticky;
@@ -160,6 +217,11 @@ p { margin: 0 0 var(--s3); }
 }
 .nav-logo { display: flex; align-items: center; gap: var(--s3); text-decoration: none; }
 .nav-logo img { height: 52px; width: auto; }
+.nav-logo .brand { padding: 0; }
+.nav-logo .brand-name { font-size: 32px; }
+.nav-logo .brand-james { font-size: 14px; }
+.nav-logo .brand-tagline { font-size: 10px; }
+.nav-logo .brand-district { font-size: 11px; }
 .nav-links { display: flex; align-items: center; gap: var(--s5); }
 .nav-links a {
   font-family: var(--font-body);
@@ -403,10 +465,11 @@ p { margin: 0 0 var(--s3); }
   font-weight: 900;
   font-size: clamp(3.5rem, 7vw, 5.5rem);
   line-height: 0.9;
-  color: var(--gold);
+  color: var(--cream);
   margin-bottom: var(--s2);
   letter-spacing: -0.02em;
 }
+.stat-num sub { color: rgba(250,246,238,0.6); }
 .stat-num sub {
   font-size: 0.4em;
   font-weight: 700;
@@ -445,7 +508,7 @@ p { margin: 0 0 var(--s3); }
   background: linear-gradient(90deg, var(--gold) 0%, var(--gold) 50%, var(--red) 50%, var(--red) 100%);
 }
 .receipts h2 { color: var(--cream); }
-.receipts .eyebrow { color: var(--gold); }
+.receipts .eyebrow { color: var(--cream); opacity: 0.85; }
 .receipts .record-lead { color: rgba(250,246,238,0.78); margin: 0; font-size: 1.1rem; }
 
 /* Marquee — auto-scrolling pill ticker */
@@ -473,7 +536,7 @@ p { margin: 0 0 var(--s3); }
   white-space: nowrap;
   padding: 10px 18px;
   background: rgba(250,246,238,0.06);
-  border: 1px solid rgba(232,176,75,0.18);
+  border: 1px solid rgba(250,246,238,0.22);
   border-radius: 999px;
   font-family: var(--font-body);
   font-weight: 600;
@@ -501,12 +564,12 @@ p { margin: 0 0 var(--s3); }
   font-family: var(--font-head);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--cream);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin: 0 0 var(--s3);
   padding-bottom: var(--s2);
-  border-bottom: 1px solid rgba(232,176,75,0.25);
+  border-bottom: 2px solid var(--red);
 }
 .receipts-list {
   list-style: none;
@@ -523,31 +586,31 @@ p { margin: 0 0 var(--s3); }
 }
 .receipts-list li:last-child { border-bottom: 0; }
 .receipts-list li::before {
-  content: '✓';
+  content: '★';
   position: absolute;
   left: 0;
   top: 8px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(232,176,75,0.18);
-  color: var(--gold);
-  font-size: 12px;
+  background: var(--red);
+  color: var(--cream);
+  font-size: 11px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
 }
-.receipts-list strong { color: var(--gold); font-weight: 700; }
+.receipts-list strong { color: var(--cream); font-weight: 700; }
 .receipts-foot {
   text-align: center;
   margin: var(--s6) 0 0;
   color: rgba(250,246,238,0.7);
   font-size: 14px;
 }
-.receipts-foot a { color: var(--gold); font-weight: 600; }
-.receipts-foot a:hover { color: var(--cream); }
+.receipts-foot a { color: var(--cream); font-weight: 700; border-bottom: 1px solid var(--red); padding-bottom: 1px; }
+.receipts-foot a:hover { color: var(--red); border-color: var(--cream); }
 
 /* -----  Pillars / priorities  ----- */
 .pillars-grid {
@@ -897,17 +960,19 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   gap: var(--s5);
   margin-bottom: var(--s5);
 }
-.footer a { color: var(--gold); }
-.footer a:hover { color: var(--cream); }
+.footer a { color: var(--cream); border-bottom: 1px solid rgba(220,40,40,0.5); padding-bottom: 1px; }
+.footer a:hover { color: var(--red); border-color: var(--cream); }
 .footer h5 {
   font-family: var(--font-body);
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--cream);
   margin-bottom: var(--s3);
 }
 .footer-logo { height: 72px; width: auto; display: block; margin-bottom: var(--s3); filter: brightness(1.15); }
+.footer .brand-james { color: var(--red); }
+.footer .brand-name { color: var(--red); }
 .footer ul { list-style: none; padding: 0; margin: 0; }
 .footer ul li { margin-bottom: var(--s2); }
 .footer-bottom {

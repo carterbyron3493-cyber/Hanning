@@ -851,8 +851,8 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   position: relative;
   width: 100%;
   flex: 1 1 0;
-  min-height: 220px;
-  max-height: 480px;
+  min-height: 240px;
+  /* No max-height — flex stretch fills the prose column for all sections */
   overflow: hidden;
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
@@ -926,6 +926,63 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   color: rgba(250,246,238,0.5);
   max-width: 800px;
   line-height: 1.6;
+}
+
+/* -----  Phone banner (Take Action page)  ----- */
+.phone-banner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--s5);
+  margin-top: var(--s5);
+  padding: var(--s5) var(--s6);
+  background: var(--navy-dark);
+  color: var(--cream);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  border: 2px solid var(--navy-dark);
+  transition: all var(--transition);
+}
+.phone-banner:hover {
+  background: var(--ink);
+  border-color: var(--gold);
+  color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.phone-banner-body { line-height: 1.4; }
+.phone-banner-eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--s2);
+}
+.phone-banner-number {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: var(--s2);
+}
+.phone-banner-note {
+  font-size: 14px;
+  color: rgba(250,246,238,0.78);
+  max-width: 520px;
+}
+.phone-banner-cta {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 14px 22px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: var(--radius);
+  white-space: nowrap;
 }
 
 /* -----  Mobile sticky CTA bar  ----- */
@@ -1013,6 +1070,9 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .form-grid-2 { grid-template-columns: 1fr; }
   .checks { grid-template-columns: 1fr; }
   .form-card { padding: var(--s4); }
+
+  .phone-banner { grid-template-columns: 1fr; gap: var(--s4); padding: var(--s4); }
+  .phone-banner-cta { justify-self: start; padding: 12px 18px; }
 
   /* Mobile sticky CTA bar visible — site content gets bottom padding so it isn't hidden */
   .mobile-cta { display: flex; }

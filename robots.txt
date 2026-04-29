@@ -1,5 +1,5 @@
 # Hanning for Wagoner County Commissioner, District 1
-# https://www.jameshanningforwagonercocommissioner.com/
+# https://hanningforwagonercountycommissioner.com/
 
 User-agent: *
 Allow: /
@@ -7,4 +7,4 @@ Disallow: /team/
 Disallow: /.netlify/
 Disallow: /netlify/
 
-Sitemap: https://www.jameshanningforwagonercocommissioner.com/sitemap.xml
+Sitemap: https://hanningforwagonercountycommissioner.com/sitemap.xml

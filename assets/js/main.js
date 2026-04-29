@@ -101,7 +101,7 @@
       } catch (err) {
         if (statusEl) {
           statusEl.className = 'form-status is-error';
-          statusEl.textContent = 'Something went wrong. Please try again or email info@jameshanningforwagonercocommissioner.com.';
+          statusEl.textContent = 'Something went wrong. Please try again or email info@hanningforwagonercountycommissioner.com.';
         }
         console.error('Form submit failed:', err);
       } finally {

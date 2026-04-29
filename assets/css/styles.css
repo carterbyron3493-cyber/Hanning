@@ -373,7 +373,8 @@ p { margin: 0 0 var(--s3); }
 
 /* -----  Hero  ----- */
 .hero {
-  padding: var(--s7) 0 var(--s8);
+  padding-top: var(--s7);
+  padding-bottom: var(--s8);
   position: relative;
   overflow: hidden;
 }
@@ -1181,6 +1182,11 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   /* Hide the floating desktop countdown on mobile — it overlaps mid-content.
      Urgency is carried by the sticky CTA bar + page copy + the inline mobile countdown pill. */
   .countdown { display: none !important; }
+
+  /* Give mobile containers a slightly more generous gutter so headlines breathe */
+  .container, .container-narrow { padding-left: 22px; padding-right: 22px; }
+  .hero { padding-top: var(--s5); padding-bottom: var(--s6); }
+  .page-head { padding: var(--s6) 0 var(--s5); }
 }
 
 /* Inline mobile countdown pill — sits inside hero on mobile only, doesn't float */

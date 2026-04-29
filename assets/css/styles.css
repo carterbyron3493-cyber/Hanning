@@ -219,12 +219,7 @@ p { margin: 0 0 var(--s3); }
   gap: var(--s4);
 }
 .nav-logo { display: flex; align-items: center; gap: var(--s3); text-decoration: none; }
-.nav-logo img { height: 52px; width: auto; }
-.nav-logo .brand { padding: 0; }
-.nav-logo .brand-name { font-size: 32px; }
-.nav-logo .brand-james { font-size: 14px; }
-.nav-logo .brand-tagline { font-size: 10px; }
-.nav-logo .brand-district { font-size: 11px; }
+.nav-logo img { height: 68px; width: auto; display: block; }
 .nav-links { display: flex; align-items: center; gap: var(--s5); }
 .nav-links a {
   font-family: var(--font-body);

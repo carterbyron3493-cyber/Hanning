@@ -93,6 +93,42 @@ p { margin: 0 0 var(--s3); }
   color: var(--red);
   margin: 0 0 var(--s3);
 }
+
+/* Editorial chapter / priority section marker — replaces the all-caps eyebrow on long-form pages */
+.chapter-mark {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 var(--s4);
+  line-height: 1;
+}
+.chapter-mark .chapter-num {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(28px, 4.5vw, 40px);
+  color: var(--red);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.chapter-mark .chapter-rule {
+  display: inline-block;
+  width: 38px;
+  height: 1px;
+  background: var(--navy-dark);
+  opacity: 0.35;
+  flex-shrink: 0;
+}
+.chapter-mark .chapter-label {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--navy-dark);
+  opacity: 0.78;
+  text-transform: lowercase;
+}
 .subhead {
   font-family: var(--font-head);
   font-style: italic;
@@ -1140,19 +1176,30 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 
   /* Mobile sticky CTA bar visible — site content gets bottom padding so it isn't hidden */
   .mobile-cta { display: flex; }
-  body { padding-bottom: 76px; }
+  body { padding-bottom: 84px; }
 
-  /* Countdown sits ABOVE the sticky bar, smaller, on the right */
-  .countdown {
-    right: 10px;
-    bottom: calc(76px + env(safe-area-inset-bottom));
-    padding: 10px 12px;
-    gap: 8px;
-  }
-  .countdown-values { gap: 6px; }
-  .countdown-values div { min-width: 30px; }
-  .countdown-values .num { font-size: 22px; }
-  .countdown-values .unit { font-size: 8px; letter-spacing: 1px; }
-  .countdown-label { font-size: 9px; letter-spacing: 1.5px; }
-  .countdown-label strong { font-size: 10px; }
+  /* Hide the floating desktop countdown on mobile — it overlaps mid-content.
+     Urgency is carried by the sticky CTA bar + page copy + the inline mobile countdown pill. */
+  .countdown { display: none !important; }
+}
+
+/* Inline mobile countdown pill — sits inside hero on mobile only, doesn't float */
+.countdown-pill {
+  display: none;
+  margin: var(--s4) 0 0;
+  padding: 10px 14px;
+  background: var(--red);
+  color: var(--cream);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  align-self: flex-start;
+}
+.countdown-pill .num { font-family: var(--font-head); font-size: 18px; font-weight: 900; margin-right: 4px; }
+@media (max-width: 768px) {
+  .countdown-pill { display: inline-block; }
 }

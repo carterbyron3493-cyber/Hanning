@@ -138,8 +138,9 @@ p { margin: 0 0 var(--s3); }
 .btn-outline:hover { background: var(--navy-dark); color: var(--cream); }
 .btn-ghost { background: transparent; color: var(--cream); border: 2px solid rgba(250,246,238,0.3); }
 .btn-ghost:hover { background: rgba(250,246,238,0.12); color: var(--cream); border-color: var(--cream); }
-.btn-gold { background: var(--gold); color: var(--ink); }
-.btn-gold:hover { background: var(--gold-dark); color: var(--ink); }
+/* btn-gold retained as alias for btn-primary — gold is deprecated */
+.btn-gold { background: var(--red); color: var(--cream); }
+.btn-gold:hover { background: var(--red-dark); color: var(--cream); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 .btn-lg { padding: 20px 36px; font-size: 17px; }
 
 /* -----  Brand logo (HTML + CSS composition matching new logo) ----- */
@@ -441,7 +442,7 @@ p { margin: 0 0 var(--s3); }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 6px;
-  background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, var(--gold) 33%, var(--gold) 66%, var(--navy) 66%, var(--navy) 100%);
+  background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, var(--cream) 33%, var(--cream) 66%, var(--navy) 66%, var(--navy) 100%);
 }
 .record-head {
   text-align: center;
@@ -450,7 +451,7 @@ p { margin: 0 0 var(--s3); }
   margin-left: auto;
   margin-right: auto;
 }
-.record .eyebrow { color: var(--gold); }
+.record .eyebrow { color: var(--cream); opacity: 0.9; }
 .record h2 { color: var(--cream); margin-bottom: var(--s3); }
 .record-lead { color: rgba(250,246,238,0.8); font-size: 1.15rem; margin: 0; }
 .record-grid {
@@ -503,7 +504,7 @@ p { margin: 0 0 var(--s3); }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold) 50%, var(--red) 50%, var(--red) 100%);
+  background: linear-gradient(90deg, var(--red) 0%, var(--red) 50%, var(--cream) 50%, var(--cream) 100%);
 }
 .receipts h2 { color: var(--cream); }
 .receipts .eyebrow { color: var(--cream); opacity: 0.85; }
@@ -1008,7 +1009,7 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 }
 .phone-banner:hover {
   background: var(--ink);
-  border-color: var(--gold);
+  border-color: var(--red);
   color: var(--cream);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -1020,7 +1021,7 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: rgba(250,246,238,0.85);
   margin-bottom: var(--s2);
 }
 .phone-banner-number {
@@ -1042,8 +1043,8 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   font-size: 14px;
   letter-spacing: 0.04em;
   padding: 14px 22px;
-  background: var(--gold);
-  color: var(--ink);
+  background: var(--red);
+  color: var(--cream);
   border-radius: var(--radius);
   white-space: nowrap;
 }
@@ -1082,8 +1083,8 @@ textarea.form-control { min-height: 120px; resize: vertical; }
 }
 .mobile-cta a.cta-volunteer { background: var(--red); color: var(--cream); }
 .mobile-cta a.cta-volunteer:hover { background: var(--red-dark); color: var(--cream); }
-.mobile-cta a.cta-donate { background: var(--gold); color: var(--ink); }
-.mobile-cta a.cta-donate:hover { background: var(--gold-dark); color: var(--ink); }
+.mobile-cta a.cta-donate { background: var(--navy-dark); color: var(--cream); }
+.mobile-cta a.cta-donate:hover { background: var(--ink); color: var(--cream); }
 .mobile-cta a.cta-yard { background: var(--navy-dark); color: var(--cream); }
 .mobile-cta a.cta-yard:hover { background: var(--ink); color: var(--cream); }
 

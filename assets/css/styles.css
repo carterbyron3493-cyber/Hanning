@@ -144,12 +144,15 @@ p { margin: 0 0 var(--s3); }
 
 /* -----  Brand logo (HTML + CSS composition matching new logo) ----- */
 .brand {
-  display: inline-block;
+  display: inline-flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
   text-decoration: none;
   line-height: 1;
   text-align: left;
   padding: 4px 0;
   color: inherit;
+  gap: 0 !important;
 }
 .brand-james {
   display: block;
@@ -386,10 +389,10 @@ p { margin: 0 0 var(--s3); }
   font-weight: 500;
 }
 .hero-tagline strong {
-  color: var(--ink);
+  color: var(--cream);
   font-style: normal;
   font-weight: 700;
-  background: var(--gold);
+  background: var(--red);
   padding: 2px 8px;
   border-radius: 3px;
   margin: 0 2px;
